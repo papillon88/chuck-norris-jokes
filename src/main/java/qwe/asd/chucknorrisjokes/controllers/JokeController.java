@@ -13,10 +13,9 @@ import qwe.asd.chucknorrisjokes.services.JokeService;
 public class JokeController {
 
     @Autowired
-    //@Qualifier("jokeServiceBakupImpl")
     private JokeService jokeService;
 
-    @RequestMapping(name = "/" , method = RequestMethod.GET)
+    @RequestMapping(name = "/", method = RequestMethod.GET)
     public String getRandomJoke(Model model){
         model.addAttribute("joke",jokeService.getRandomJoke());
         return "chucknorris";
