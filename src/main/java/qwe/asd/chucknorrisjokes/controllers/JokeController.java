@@ -1,6 +1,8 @@
 package qwe.asd.chucknorrisjokes.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,7 @@ import qwe.asd.chucknorrisjokes.services.JokeService;
 public class JokeController {
 
     @Autowired
+    //@Qualifier("jokeServiceBakupImpl")
     private JokeService jokeService;
 
     @RequestMapping(name = "/" , method = RequestMethod.GET)
