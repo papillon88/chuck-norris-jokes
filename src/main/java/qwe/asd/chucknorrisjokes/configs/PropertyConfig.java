@@ -8,14 +8,16 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import qwe.asd.chucknorrisjokes.repositories.FakeDataSource;
+import qwe.asd.chucknorrisjokes.repositories.FakeJMSBroker;
 
 @Configuration
-@PropertySource("classpath:datasource.properties")
+@PropertySource({"classpath:datasource.properties","classpath:jms.properties"})
 public class PropertyConfig {
 
     @Autowired
     private Environment env;
 
+    //datasource.properties
     @Value("${guru.username}")
     private String user;
 
@@ -24,6 +26,19 @@ public class PropertyConfig {
 
     @Value("${guru.dburl}")
     private String url;
+    //end
+
+    //jms.properties
+    @Value("${guru.jms.username}")
+    private String jmsUser;
+
+    @Value("${guru.jms.password}")
+    private String jmsPassword;
+
+    @Value("${guru.jms.url}")
+    private String jmsUrl;
+    //end
+
 
     @Bean
     public FakeDataSource getFakeDataSource(){
@@ -32,6 +47,15 @@ public class PropertyConfig {
         fakeDataSource.setPassword(password);
         fakeDataSource.setUrl(url);
         return fakeDataSource;
+    }
+
+    @Bean
+    public FakeJMSBroker getFakeJMSBroker(){
+        FakeJMSBroker fakeJMSBroker = new FakeJMSBroker();
+        fakeJMSBroker.setJmsUsername(jmsUser);
+        fakeJMSBroker.setJmsPassword(jmsPassword);
+        fakeJMSBroker.setJmsUrl(jmsUrl);
+        return fakeJMSBroker;
     }
 
     @Bean
