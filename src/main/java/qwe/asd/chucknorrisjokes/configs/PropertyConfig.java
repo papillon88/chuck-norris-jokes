@@ -1,15 +1,20 @@
 package qwe.asd.chucknorrisjokes.configs;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.env.Environment;
 import qwe.asd.chucknorrisjokes.repositories.FakeDataSource;
 
 @Configuration
 @PropertySource("classpath:datasource.properties")
 public class PropertyConfig {
+
+    @Autowired
+    private Environment env;
 
     @Value("${guru.username}")
     private String user;
@@ -23,7 +28,7 @@ public class PropertyConfig {
     @Bean
     public FakeDataSource getFakeDataSource(){
         FakeDataSource fakeDataSource = new FakeDataSource();
-        fakeDataSource.setUser(user);
+        fakeDataSource.setUser(env.getProperty("USERNAME"));
         fakeDataSource.setPassword(password);
         fakeDataSource.setUrl(url);
         return fakeDataSource;

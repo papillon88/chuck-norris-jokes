@@ -12,8 +12,7 @@ public class ChuckNorrisJokesApplication {
 	public static void main(String[] args) {
 
 		ApplicationContext ctx = SpringApplication.run(ChuckNorrisJokesApplication.class, args);
-		FakeDataSource fakeDataSource =
-				(FakeDataSource)ctx.getBean(FakeDataSource.class);
+		FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
 		System.out.println(fakeDataSource.getUser());
 	}
 }
