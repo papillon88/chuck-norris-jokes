@@ -11,7 +11,10 @@ import qwe.asd.chucknorrisjokes.repositories.FakeDataSource;
 import qwe.asd.chucknorrisjokes.repositories.FakeJMSBroker;
 
 @Configuration
-@PropertySource({"classpath:datasource.properties","classpath:jms.properties"})
+@PropertySource({
+        "classpath:datasource.properties",
+        "classpath:jms.properties"
+})
 public class PropertyConfig {
 
     @Autowired
